@@ -1,0 +1,42 @@
+1...>>>
+
+package java_Assignments;
+
+public class StringAppend {
+    public static void main(String[] args) {
+        StringBuffer buffer = new StringBuffer("StringBuffer");
+        buffer.append(" is a peer class of String");
+        buffer.append(" that provide much of");
+        buffer.append(" the functionality of strings");
+        System.out.println("");
+        System.out.println(buffer);
+    }
+}
+
+
+
+2...>>>
+
+
+
+
+
+
+3...>>>
+
+package java_Assignments;
+
+public class StrRev 
+{
+	
+	    public static void main(String[] args)
+	    {
+	        StringBuffer str = new StringBuffer("This method returns the reversed object on which it was called");
+	        str.reverse();
+	        System.out.print("");
+	        System.out.print("");
+	        System.out.print(str);
+	    }
+	
+
+}
