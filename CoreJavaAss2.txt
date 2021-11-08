@@ -1,0 +1,518 @@
+1...
+
+package java_Assignments;
+
+class Singleton {
+	// Static variable reference of single_instance
+	// of type Singleton
+	private static Singleton single_instance = null;
+
+	// Decl;aring a variable of type String
+	public String s;
+
+	// Constructor
+	// Here we will be creating private constructor
+	// restricted to this class itself
+	private Singleton()
+	{
+		s = "Hello I am a string part of Singleton class";
+	}
+
+	// Static method
+	// Static method to create instance of Singleton class
+	public static Singleton getInstance()
+	{
+		if (single_instance == null)
+			single_instance = new Singleton();
+
+		return single_instance;
+	}
+}
+
+class Abc {
+	// Main driver method
+	public static void main(String args[])
+	{
+		// Instantiating Singleton class with variable x
+		Singleton x = Singleton.getInstance();
+
+		// Instantiating Singleton class with variable y
+		Singleton y = Singleton.getInstance();
+
+		// Instantiating Singleton class with variable z
+		Singleton z = Singleton.getInstance();
+
+		// Printing the hash code for above variable as
+		// declared
+		System.out.println("Hashcode of x is "
+						+ x.hashCode());
+		System.out.println("Hashcode of y is "
+						+ y.hashCode());
+		System.out.println("Hashcode of z is "
+						+ z.hashCode());
+
+		// Condition check
+		if (x == y && y == z) {
+
+			// Print statement
+			System.out.println(
+				"Three objects point to the same memory location on the heap i.e, to the same object");
+		}
+
+		else {
+			// Print statement
+			System.out.println(
+				"Three objects DO NOT point to the same memory location on the heap");
+		}
+	}
+}
+
+
+
+
+2...>>>
+
+package java_Assignments;
+import java.util.*;
+
+abstract class Employee {
+    abstract public void getTotalSal();
+}
+
+class Labour extends Employee{
+    public double overTime ,lsal;
+    public Labour(double lsal ,double overTime)
+    {
+        this.lsal = lsal;
+        this.overTime = overTime;
+    }
+    @Override
+    public void getTotalSal() {
+        System.out.println("Labour total salary = " +  totallsal());
+    }
+    public double totallsal() {
+        double totallsal = lsal +overTime;
+        return totallsal;
+    }
+}
+
+class Manager extends Employee{
+    public double incentive, msal;
+    public Manager(double msal ,double incentive)
+    {
+        this.msal = msal;
+        this.incentive = incentive;
+    }
+    @Override
+    public void getTotalSal() {
+        System.out.println("Managers total Salary = " + totalmsal());
+    }
+
+    public double totalmsal() {
+        double totalmsal = msal +incentive;
+        return totalmsal;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+	Manager m = new Manager(25000,1500);
+    System.out.println("Manager Incentive = "+m.incentive);
+     m.getTotalSal();
+    System.out.println();
+        Labour l = new Labour(25000,1500);
+        System.out.println("Labour Overtime incentive = "+l.overTime);
+        l.getTotalSal();
+    System.out.println("");
+    double totalEmpSal = m.totalmsal() + l.totallsal();
+    System.out.println("Total Salary of all Employees = " + totalEmpSal);
+
+    }
+}
+
+
+
+3...>>>
+
+package java_Assignments;
+public class Bank 
+{
+	     public double balance;
+	    public Bank(double balance)
+	    {
+	        this.balance = balance;
+	    }
+
+	     public double getBalance() {
+	         return balance;
+	     }
+	 
+}
+
+
+package java_Assignments;
+
+public class CurrentAcc extends Bank{
+    public double creditCash;
+    CurrentAcc(double balance ,double creditCash)
+    {
+        super(balance);
+        this.creditCash = creditCash;
+    }
+    @Override
+    public double getBalance()
+    {
+        double currentBalance = balance + creditCash;
+        return currentBalance;
+    }
+    public void disp()
+    {
+        System.out.println("Initial Balance = " + balance);
+        System.out.println("Credit cash = " +  creditCash);
+        System.out.println(" Total Current Account Holder Balance= "+getBalance());
+        System.out.println("");
+    }
+}
+
+
+package java_Assignments;
+
+public class SavingsAcc extends Bank{
+    public double fixedDeposit;
+    SavingsAcc(double balance ,double fixedDeposit)
+    {
+        super(balance);
+        this.fixedDeposit = fixedDeposit;
+    }
+    @Override
+    public double getBalance()
+    {
+        double savingBalance = balance + fixedDeposit;
+        return savingBalance;
+    }
+    public void disp()
+    {
+        System.out.println("Initial Balance = " + balance);
+        System.out.println("Fixed Deposit = " + fixedDeposit);
+        System.out.println(" Total Saving Account Holder Balance= "+ getBalance());
+        System.out.println("");
+    }
+}
+
+
+package java_Assignments;
+
+public class Ques3 {
+    public static void main(String[] args) {
+        CurrentAcc currentAcc = new CurrentAcc(1000,4000);
+        currentAcc.disp();
+        SavingsAcc savingAcc = new SavingsAcc(10000,6000);
+        savingAcc.disp();
+        double totalBankBalance = currentAcc.getBalance()+ savingAcc.getBalance();
+        System.out.println("Total Cash in bank = " + totalBankBalance);
+    }
+}
+
+
+4...>>>
+
+TESTING ABSTRACT CLASS anD ABSTRACT METHOD PRINCIPLE
+
+1.IF ANY CLASS HAS METHOD AS ABSTRACT THEN THAT CLASS MUST BE DECLARED ABSTRACT 
+ANS : YES , IF WE DOESNT MAKE THE CLASS AS ABSTRACT IT WILL GIVE ERROR .
+WE SHOULD MAKE THE METHOD AND CLASS AS ABSTRACT LIKE THIS
+package ass2.ques4;
+
+public abstract class Abstracts {
+    public abstract void print();
+    {
+
+    }
+}
+
+2.ABSTRACT CLASS CANNOT BE INSTANTIATED
+ANS :YES, BECAUSE IN ABSTARCT CLASS WE MIGHT HAVE ONLY ABSTRACT METHOD,WHEN WE HAVE
+ABSTRACT METHOD THERE IS NO POINT OF INSTANTIATING THE CLASS AS THERE IS NOTHING TO 
+ACCESS
+
+if we try to instantiate the abstract class
+it will give error like this
+java: ass2.ques4.Abstracts is abstract; cannot be instantiated
+
+3.WHEN WE EXTEND THE ABSTRACT WE NEED TO PROVIDE IMPLEMENATATION USING OVERIDING OTHERWISE
+DECALRE THE SUBCLASS ALSO ABSTRACT
+ANS:
+IF WE DONT PROVIDE IMPLENMENATTION IT WILL GIVE ERROR LIKE THIS
+java: ass2.ques4.AbstractMain is not abstract and does not override abstract method print() 
+
+TO OVERCOME THIS WE NEED TO PROVIDE IMPLEMENTATION IN SUBCLASS LIKE THIS
+package ass2.ques4;
+
+public class AbstractMain extends Abstracts
+{
+    public static void main(String[] args) {
+    @Override
+    public void print() {
+	System.out.println("Implenting a abstract method by overriding");
+    }
+}
+}
+
+4.ABSTRACT CLASS CANNOT BE PRIVATE
+ANS: YES, BECAUSE WE CANNOT ACCESS THEM IN ANY SUBCLASS AND CANT PROVIDE IMPLEAMNETATION TO THAT 
+ABSTRACT CLASS
+
+5.ABSTRACT CLASS CANNOT BE FINAL
+ANS: YES, BECAUSE WE CAN ACCESS THEM IN ANY SUBCLASS BUT CAN'T PROVIDE IMPLEAMNETATION TO THAT 
+ABSTRACT CLASS OR CAN'T BE OVERRIDDEN.
+
+6.WE CAN DECLARE THE CLASS AS ABSTRACT WITHOUT HAVING ABSTRACT METHOD
+ANS:YES,BUT IF WE DO THAT WE CAN'T INSTATNTIATE THAT CLASS.
+
+
+
+
+5...>>>
+
+package java_Assignments;
+
+public abstract class Shape {
+    public abstract void draw();
+}
+
+package java_Assignments;
+
+public class Cubes extends Shape{
+    @Override
+    public void draw()
+    {
+        System.out.println("Cube Drawn");
+    }
+}
+
+package java_Assignments;
+
+public class Rectangle extends Shape{
+    @Override
+    public void draw()
+    {
+        System.out.println("Rectangle Drawn");
+    }
+}
+
+package java_Assignments;
+
+public class Line extends Shape{
+    @Override
+    public void draw()
+    {
+        System.out.println("Line Drawn");
+    }
+}
+
+package java_Assignments;
+
+public class Ques5 {
+    public static void main(String[] args) {
+        Shape shape = new Rectangle();
+        shape.draw();
+        new Line().draw();
+        new Cubes().draw();
+    }
+}
+
+
+6...>>>
+
+package java_Assignments;
+
+public abstract class Persistence {
+    public abstract void persist();
+}
+
+
+package java_Assignments;
+
+public class Dbp extends Persistence{
+    @Override
+    public void persist()
+    {
+        System.out.println("Overiding in FIle persistence");
+    }
+}
+
+
+package java_Assignments;
+
+public class Fp extends Persistence{
+    @Override
+    public void persist()
+    {
+        System.out.println("Overiding in FIle persistence");
+    }
+}
+
+package java_Assignments;
+
+public class Client{
+    public static void main(String[] args) {
+        Persistence persistence = new Persistence() {
+            @Override
+            public void persist() {
+                System.out.println("");
+                System.out.println("'1.The client created the object of Persistance which is abstract class'");
+                System.out.println("");
+                System.out.println("'2.And then clients is doing following invocation of abstract method'");
+                System.out.println("");
+                System.out.println("'3.The client is invoking the persist method without knowing that data is saved in file and database'");
+            }
+        };
+        persistence.persist();
+    }
+}
+
+
+
+7...>>>
+
+package java_Assignments;
+
+public abstract class DessertItem {
+    public double tax;
+    public DessertItem (double tax)
+    {
+        this.tax = tax;
+    }
+    public abstract void getCost();
+}
+
+
+
+package java_Assignments;
+
+public class Candy extends DessertItem{
+    public double doller;
+    public Candy(double doller,double tax)
+    {
+        super(tax);
+        this.doller = doller;
+    }
+    @Override
+    public void getCost(){
+        double price =0;
+        double rupees = 60;
+        double x = doller/rupees;
+        System.out.println("Price of Candy is " + (price=x+tax) + "$" );
+    }
+}
+
+
+package java_Assignments;
+
+public class Cookie extends DessertItem{
+    public double euro;
+    public Cookie(double euro,double tax)
+    {
+        super(tax);
+        this.euro = euro;
+    }
+    @Override
+    public void getCost(){
+        double price;
+        double rupees = 70;
+        double x = euro/rupees;
+        System.out.println("Price of Cookie is " + (price=x+tax) + " Euro");
+    }
+}
+
+package java_Assignments;
+
+public class Icecream extends DessertItem{
+    public double rupees;
+    public Icecream(double rupees,double tax)
+    {
+        super(tax);
+        this.rupees = rupees;
+    }
+    @Override
+    public void getCost(){
+        double price;
+        System.out.println("Price of Icecream is " + (price=rupees+tax) + " rupees");
+    }
+}
+
+
+package java_Assignments;
+
+import java.util.*;
+
+public class DessertShop {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String role = "";
+        System.out.println("Enter the Role Owner or Customer");
+        role = sc.nextLine();
+        if (role.equals("owner")) {
+            owner();
+        } else if (role.equals("customer")) {
+            customer();
+        }
+    }
+    public static void owner()
+    {
+        Scanner sc = new Scanner(System.in);
+        String add ="";
+        System.out.println("Welcome Owner");
+        System.out.println("What do u want to add");
+        System.out.println("1.Candy\n 2.Cookie\n 3.Icecream");
+        add = sc.nextLine();
+        if(add.equals("candy"))
+        {
+            System.out.println("candy added to shop");
+        }
+        else if (add.equals("cookie"))
+        {
+            System.out.println("Cookie added to shop");
+        }
+        else if (add.equals("icecream"))
+        {
+            System.out.println("Icecream added to shop");
+        }
+    }
+    public static void customer()
+    {
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+        System.out.println("Welcome to our Dessert shop");
+        System.out.println("What u want to buy");
+        DessertItem dessertItem = new Icecream(400,12);
+        dessertItem.getCost();
+        new Candy(3,12).getCost();
+        new Cookie(3,8).getCost();
+        System.out.println("1.Candy\n 2.Cookie\n 3.Icecream");
+        input = sc.nextLine();
+        if(input.equals("candy"))
+        {
+            System.out.println("Order placed for candy");
+        }
+        else if (input.equals("cookie"))
+        {
+            System.out.println("Order placed for Cookie");
+        }
+        else if (input.equals("icecream"))
+        {
+            System.out.println("order placed for icecream");
+        }
+    }
+
+
+}
+
+
+
+
+
+
+
+
