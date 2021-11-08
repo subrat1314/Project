@@ -1,0 +1,310 @@
+-----------------------------------------CORE JAVA |ASSIGNMENT1---------------------------------------------------
+
+1....>>>>  (ARMSTRONG NUMBER).
+
+package java_Assignments;
+import java.util.*;
+
+
+public class Armstrong {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number");
+		int num=sc.nextInt();
+		int count=0,sum=0;
+		int temp=num;
+
+		while(num!=0)
+		{
+			count++;
+			num=num/10;
+		}
+
+		num=temp;
+		while(num!=0)
+		{
+			int rem=num%10;
+			int pow=1;
+			for(int i=1;i<=count;i++)
+			{
+				pow=pow*rem;
+			}
+			
+			sum=sum+pow;
+			num=num/10;
+		}
+		
+		if(sum==temp)
+		{
+			System.out.println(temp +" is a ArmStrong number");
+		}
+		else
+		{
+			System.out.println(temp +" is not a Armstrong number");
+		}
+
+	}
+
+}
+
+
+
+
+
+
+2...>>> (ARMSTRONG NUMBER WITH GIVEN RANGE).
+
+public class Arm2 {
+    public static void main(String[] args) 
+    {
+        for (int n = 100; n <1000; n++) {
+            int sum=0;
+            int i=n;
+            while(i>0){
+                int dif=i%10;
+                sum = sum+dif*dif*dif;
+                i/=10;
+            }
+            if(n==sum){
+                System.out.println("The following is an armstrong number: "+n);
+            }
+        }
+    }
+}
+
+
+
+3...>>> (COMPOUND INTEREST AND SIMPLE INTEREST).
+
+import java.util.Scanner;
+public class SiCi {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the principal amount");
+        int p = sc.nextInt();
+        System.out.println("Enter the Rate");
+        int r = sc.nextInt();
+        System.out.println("Enter the Time");
+        int t = sc.nextInt();
+        int SI = ((p*r*t)/100);
+        System.out.println("The Simple interest is " + SI);
+        System.out.println("Enter the number of compounding");
+        int n = sc.nextInt();
+        double A = p*(1+r/n)^n*t;
+        double CI = A - p;
+        System.out.println("Compund Interest" + CI);
+    }
+}
+
+4...>>> (MARKS OF THREE SUBJECTS).
+
+import java.util.Scanner;
+
+public class Result {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Marks of subject1");
+        int sub1 = sc.nextInt();
+        System.out.println("Marks of subject2");
+        int sub2 = sc.nextInt();
+        System.out.println("Marks of subject3");
+        var sub3 = sc.nextInt();
+        double avg = (sub1 + sub2 + sub3)/3;
+        System.out.println("average = " + avg);
+        if( sub1>60 && sub2>60 && sub3>60)
+        {
+            System.out.println("Passed");     
+        }
+        else if(sub1>60 && sub2 >60 || sub3 > 60)
+        {
+            System.out.println("Promoted");
+        }
+        else if (sub1>60 || sub2<60 && sub3 < 60)
+            {
+                System.out.println("Failed");
+            }
+        
+    }
+    
+}
+
+
+
+5...>>> (INCOME TAX)
+
+import java.util.Scanner;
+
+public class Income {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the CTC");
+        double c = sc.nextDouble();
+        if(c<180000)
+        {
+            System.out.println("The payable tax is NILL" );
+        }
+        else if(c > 181001 && c<300000)
+        {
+            System.out.println("The payable tax is " + c*0.1 );
+        }
+        else if(c > 300001 && c<500000)
+        {
+            System.out.println("The payable tax is " + c*0.2 );
+        }
+        else if(c > 500001 && c<1000000)
+        {
+            System.out.println("The payable tax is " + c*0.3 );
+        }
+    }
+}
+
+
+6...>>>CUI
+
+import java.util.Scanner;
+
+public class Cui {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int count = 0;
+        String username = "", password ="";
+        do{
+            System.out.println("ENter the username");
+            username = sc.nextLine();
+            System.out.println("ENter the PAssword");
+            password = sc.nextLine();
+            if(username.equals("SUBRATS") && password.equals("SUBRATS"))
+            {
+                System.out.println("Welcome " + username);
+                return;
+            }
+            else{
+                System.out.println("Incorrect Details Try Again!");
+                count++;
+            }
+            
+        }
+        while(count<3);
+        {
+            System.out.println("contact Admin");
+        }
+    }
+}
+
+
+
+7...>>>
+
+public class Search {
+    public static void main(String[] args) {
+        int [] arr = {5,12,14,6,78,19,1,23,26,35,37,7,52,86,47};
+        int elm = 19;
+        int idx =-1;
+        for (int i = 0 ;i<arr.length;i++)
+        {
+            if (elm == arr[i])
+            {
+                idx = i;
+                break;
+            }
+        }
+        if(idx != -1)
+        {
+            System.out.println(elm + " found at index " + idx);
+        }
+        else
+        {
+            System.out.println("Element not found");
+        }
+    }
+}
+
+
+8...>>>BUBBLE SORTING
+
+package sortingAlgorithm;
+
+import java.util.Arrays;
+
+public class BubbleSorting {
+
+		public static void sort(int[] a) 
+		{
+			for(int i=0;i<a.length-1;i++)
+			{
+				for(int j=0;j<a.length-1-i;j++)
+				{
+					if(a[j]>a[j+1])
+					{
+						int temp=a[j];
+						a[j]=a[j+1];
+						a[j+1]=temp;
+					}
+				}
+			}
+		}
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			int[] a= {5,12,14,6,78,19,1,23,26,35,37,7,52,86,47};
+			sort(a);
+			System.out.println(Arrays.toString(a));
+
+		}
+
+}
+
+
+
+
+9...>>>
+
+import java.util.Scanner;
+
+public class marks {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[][] arr = new int[3][3];
+        System.out.println("Enter the marks");
+        for (int i=0 ;i<3 ;i++)
+        {
+            for(int j= 0; j<3 ;j++)
+            {
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        //reading the values
+        for (int i=0 ;i<3 ;i++)
+        {
+            for(int j= 0; j<3 ;j++)
+            {
+                System.out.print(arr[i][j] + " ");
+            }
+        }
+        //calculating the average of all the subjects
+        for (int i=0 ;i<3 ;i++)
+        {
+            int sum=0;
+            for(int j= 0; j<3 ;j++)
+            {
+                sum =sum + arr[i][j];  
+            }
+            System.out.println(" sum of subject" + sum);
+            System.out.println("Average of subject" + sum/3);
+        }
+        //calculating the average and sum of all marks
+        for (int i=0 ;i<3 ;i++)
+        {
+            int sum = 0;
+            for(int j= 0; j<3 ;j++)
+            {     
+                sum =sum + arr[j][i];   
+            }
+            System.out.println(" sum of marks" + sum);
+            System.out.println("Average of marks" + sum/3);
+        }
+    }
+}
+
+
